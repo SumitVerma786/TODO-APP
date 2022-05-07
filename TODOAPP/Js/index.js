@@ -1,26 +1,14 @@
-const days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
 var selectedDay;
 
 var form = document.getElementById("form");
-form.addEventListener("submit", function (event) {
-  selectedDay = document.getElementById("day").value;
-  showTask(selectedDay);
-  event.preventDefault();
-});
+
 var task = [];
 var ul = document.getElementById("list");
 var body = document.getElementsByTagName("body");
+
 const addElement = () => {
   if (task == null) {
-    alert("Add todo");
+    alert("Add a todo");
   } else {
     body[0].innerHTML = "";
     let ul = document.createElement("ul");
@@ -33,28 +21,36 @@ const addElement = () => {
     });
     body[0].appendChild(ul);
   }
-}
- function showTask (selectedDay) {
-  if (selectedDay == days[0]) {
+};
+
+const showTask = () => {
+  if (selectedDay === "Monday" || selectedDay === "monday") {
     task = JSON.parse(localStorage.getItem("Monday"));
     addElement.apply(this, task);
-  } else if (selectedDay == days[1]) {
-    task = JSON.parse(localStorage.getItem("Tuesday"));
+  } else if (selectedDay === "Tuesday" || selectedDay === "tuesday") {
+    task = JSON.parse(window.localStorage.getItem("Tuesday"));
     addElement.apply(this, task);
-  } else if (selectedDay == days[2]) {
-    task = JSON.parse(localStorage.getItem("Wednesday"));
+  } else if (selectedDay === "Wednesday" || selectedDay === "wednesday") {
+    task = JSON.parse(window.localStorage.getItem("Wednesday"));
     addElement.apply(this, task);
-  } else if (selectedDay == days[3]) {
-    task = JSON.parse(localStorage.getItem("Thursday"));
+  } else if (selectedDay === "Thursday" || selectedDay === "thursday") {
+    task = JSON.parse(window.localStorage.getItem("Thursday"));
     addElement.apply(this, task);
-  } else if (selectedDay == days[4]) {
-    task = JSON.parse(localStorage.getItem("Friday"));
+  } else if (selectedDay === "Friday" || selectedDay === "friday") {
+    task = JSON.parse(window.localStorage.getItem("Friday"));
     addElement.apply(this, task);
-  } else if (selectedDay == days[5]) {
-    task = JSON.parse(localStorage.getItem("Saturday"));
+  } else if (selectedDay === "Saturday" || selectedDay === "saturday") {
+    task = JSON.parse(window.localStorage.getItem("Saturday"));
     addElement.apply(this, task);
-  } else if (selectedDay == days[6]) {
-    task = JSON.parse(localStorage.getItem("Sunday"));
+  } else if (selectedDay === "Sunday" || selectedDay === "sunday") {
+    task = JSON.parse(window.localStorage.getItem("Sunday"));
     addElement.apply(this, task);
+  } else {
+    alert("Please enter a valid day");
   }
-}
+};
+
+form.addEventListener("submit", function (event) {
+  (selectedDay = document.getElementById("day").value), showTask(selectedDay);
+  event.preventDefault();
+});
